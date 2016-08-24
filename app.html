@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" ng-app="sportsStore">
+<head>
+	<meta charset="UTF-8">
+	<title>SportsStore</title>
+	<script src="angular-1.5.0/angular.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.css">
+	<script>
+		angular.module('sportsStore', ["customFilers", "cart","ngRoute"])
+		.config(function($routeProvider){
+			$routeProvider.when("/complete",{
+				templateUrl: "/views/thankYou.html"
+			})
+
+			$routeProvider.when("/placeorder",{
+				templateUrl: "/views/placeorder.html"
+			})
+
+			//购物清单详情
+			$routeProvider.when("/checkout",{
+				templateUrl: "/views/checkoutSummary.html"
+			});
+			//商品列表
+			$routeProvider.when("/products",{
+				templateUrl: "/views/productList.html"
+			});
+			//商品列表
+			$routeProvider.otherwise({
+				templateUrl: "/views/productList.html"
+			});
+		});
+	</script>
+	
+	<script src="controllers/sportsStore.js"></script>
+	<script src="controllers/customFilters.js"></script>
+	<script src="controllers/productList.js"></script>
+	<script src="controllers/checkoutControllers.js"></script>
+	<!--购物车-->
+	<script src="components/cart/cart.js"></script>
+	<script src="angular-1.5.0/angular-route.js"></script>
+</head>
+<body ng-controller="sportsStoreCtrl">
+	<!--头部-->
+	<div class="navbar navbar-inverse">
+		<a href="#" class="navbar-brand">体育用品商店</a>
+		<!-- 结账金额显示 -->
+		<cart-summary>
+	</div>
+	<!--头部 end-->
+	<!--ajax加载错误提示-->
+	<div class="alert alert-danger" ng-show="data.error">
+		Error({{data.error.status}}). 未加载产品数据。
+		<a href="/app.html" class="alert-link">再次加载</a>
+	</div>
+	<!--ajax加载错误提示 end-->
+
+	<!--内容 -->
+	<ng-view />
+	<!--内容 end-->
+</body>
+</html>	

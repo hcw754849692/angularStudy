@@ -1,0 +1,11 @@
+<div class="alert alert-danger" ng-show="data.orderError">
+	Error ({{data.orderError.status}}).不能放置顺序
+	<a href="#/placeorder" class="alert-link">点击这里再试一次
+</a>
+</div>
+
+<div class="well" ng-hide="data.orderError">
+	<h2>谢谢！</h2>
+	感谢你的订单，我们会尽快发货！
+	如果您需要联系我们，请参考 {{data.orderId}}.
+</div>

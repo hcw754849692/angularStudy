@@ -1,0 +1,35 @@
+<div ng-controller="ordersCtrl">
+	<!--显示订单摘要 调用行为selectOrder突显订单-->
+	<table class="table table-striped table-bordered">
+		<tr>
+			<th>Name</th>
+			<th>City</th>
+			<th>Value</th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="order in orders">
+			<td>{{order.name}}</td>
+			<td>{{order.city}}</td>
+			<td>{{calTotal(order) | currency}}</td>
+			<td>
+				<button class="btn btn-xs btn-primary" ng-click="selectOrder(order)">Details</button>
+			</td>
+		</tr>
+	</table>
+	<!--订单被选中时可见 它显示被订购的产品的详情-->
+	<div ng-show="selectedOrder">
+		<h3>Order Details</h3>
+		<table class="table table-striped table-bordered">
+			<tr>
+				<th>Name</th>
+				<th>Count</th>
+				<th>Price</th>
+			</tr>
+			<tr ng-repeat="item in selectedOrder.products">
+				<td>{{item.name}}</td>
+				<td>{{item.count}}</td>
+				<td>{{item.price  | currency}}</td>
+			</tr>
+		</table>
+	</div>
+</div>

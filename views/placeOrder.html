@@ -1,0 +1,69 @@
+<style>
+	.ng-invalid {
+		background-color: lightpink;
+	}
+	.ng-valid {
+		background-color: lightgreen;
+	}
+	span.error{
+		color: red;
+		font-weight: bold;
+	}
+</style>
+
+<h2>结账</h2>
+<p>请输入您的详细资料，我们将立即装运您的货物</p>
+<form name="shippingForm" novalidate>
+	<div class="well">
+		<h3>ship to</h3>
+		<div class="form-group">
+			<label>名字</label>
+			<input name="name" ng-model="data.shipping.name" class="form-control" required>
+			<span class="error" ng-show="shippingForm.name.$error.required">请输入一个名称</span>
+		</div>
+
+		<h3>地址</h3>
+
+		<div class="form-group">
+			<label>街道地址</label>
+			<input name="street" ng-model="data.shipping.street" class="form-control" required>
+			<span class="error" ng-show="shippingForm.street.$error.required">请输入一个街道地址
+</span>
+		</div>
+
+		<div class="form-group">
+			<label>城市</label>
+			<input name="city" class="form-control" ng-model="data.shipping.city" required>
+			<span class="error" ng-show="shippingForm.city.$error.required">请输入一个城市</span>
+		</div>
+
+		<div class="form-group">
+			<label>国家</label>
+			<input name="state" class="form-control" ng-model="data.shipping.state" required>
+			<span class="error" ng-show="shippingForm.state.$error.required">请输入一个国家</span>
+		</div>
+
+		<div class="form-group">
+			<label>邮政编码</label>
+			<input name="zip" class="form-control" ng-model="data.shipping.zip" required>
+			<span class="error" ng-show="shippingForm.zip.$error.required">请输入一个邮政编码</span>
+		</div>
+
+		<div class="form-group">
+			<label>地区</label>
+			<input name="country" class="form-control" ng-model="data.shipping.country" required>
+			<span class="error" ng-show="shippingForm.country.$error.required">请输入一个邮政编码</span>
+		</div>
+
+		<h3>选择</h3>
+		<div class="checkbox">
+			<label>
+				<input name="giftwrap" type="checkbox" ng-model="data.shipping.giftwrap">礼品包装这些项目
+			</label>
+		</div>
+		<div class="text-center">
+			<!--调用控制器行为-->
+			<button class="btn btn-primary" ng-disabled="shippingForm.$invalid" ng-click="sendOrder(data.shipping)">完成订单</button>
+		</div>
+	</div>
+</form>
